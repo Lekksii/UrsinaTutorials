@@ -8,11 +8,18 @@ from ursina import *
 class Menu(Entity):
     def __init__(self,**kwargs):
         super().__init__(parent=camera.ui)
+        
+        # Does we need black background?        
+        self.black_background = True
 
         # Create empty entities that will be parents of our menus content
         self.main_menu = Entity(parent=self,enabled=True)
         self.options_menu = Entity(parent=self, enabled=False)
         self.help_menu = Entity(parent=self, enabled=False)
+        
+        # If we need background - create it
+        if self.black_background:
+            Entity(model="quad",parent=self,scale=window.size,color=rgb(10,10,10))
 
         # [MAIN MENU] WINDOW START
         # Titile of our menu
